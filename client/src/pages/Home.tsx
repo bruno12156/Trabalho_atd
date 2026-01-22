@@ -17,11 +17,11 @@ export default function Home() {
   const handleButtonClick = async (label: string) => {
     try {
       setActiveButton(label);
-      await createClick({ buttonLabel: label });
+      const result = await createClick({ buttonLabel: label });
       toast({
-        title: "Success!",
-        description: `Registered click for ${label}`,
-        className: "bg-green-500 text-white border-none",
+        title: `Ticket #${result.dailySequence}`,
+        description: `Button: ${result.buttonLabel} | Date: ${new Date(result.createdAt).toLocaleDateString()} | Time: ${new Date(result.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`,
+        className: "bg-primary text-primary-foreground border-none font-medium",
       });
     } catch (error) {
       toast({
