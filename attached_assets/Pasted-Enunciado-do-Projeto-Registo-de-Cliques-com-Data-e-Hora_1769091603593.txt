@@ -1,0 +1,49 @@
+Enunciado do Projeto – Registo de Cliques com Data e Hora
+Contexto
+No âmbito das disciplinas de ATD e LP, pretende-se o desenvolvimento de uma aplicação web simples que 
+permita registar interações dos utilizadores através de botões. Este projeto tem como objetivo consolidar 
+conhecimentos de programação web, bases de dados, controlo de versões e trabalho com plataformas de 
+desenvolvimento online.
+Objetivo Geral
+Desenvolver um site funcional com quatro botões, onde cada clique seja registado numa base de dados, 
+apresentando informação temporal e um contador sequencial diário, recorrendo às plataformas GitHub e 
+Replit.
+Descrição da Aplicação
+A aplicação web deverá apresentar uma página com 4 botões identificados por texto (ex.: Botão 1, Botão 2, 
+Botão 3 e Botão 4).
+Sempre que um botão for clicado, o sistema deverá:
+• Incrementar um contador sequencial associado ao dia atual;
+• Apresentar ao utilizador:
+o o número sequencial do clique,
+o a data,
+o a hora e os minutos do clique;
+• Registar o clique numa base de dados.
+O contador deverá reiniciar automaticamente a cada novo dia.
+EA.IM.06.V5 PAG. 02|03
+Requisitos Técnicos
+• Utilização de HTML, CSS e JavaScript no front-end;
+• Utilização de Python com Flask (ou tecnologia equivalente) no back-end;
+• Utilização de uma base de dados (ex.: SQLite) para armazenamento dos cliques;
+• Cada registo na base de dados deverá conter, no mínimo:
+o Identificação do botão clicado;
+o Número sequencial do clique (por dia);
+o Data;
+o Hora (horas e minutos);
+• O projeto deverá ser desenvolvido no GitHub;
+• O site deverá ser executado e testado através da plataforma Replit, estando acessível através de um 
+link público.
+Requisitos Funcionais
+• A interface deverá ser simples, clara e responsiva;
+• O sistema deverá funcionar corretamente em diferentes dispositivos (computador, tablet e 
+smartphone);
+• O registo dos cliques deverá manter-se consistente mesmo após atualização da página;
+• O contador diário deverá reiniciar automaticamente à mudança de dia.
+Critérios de Avaliação
+Serão avaliados, entre outros, os seguintes aspetos:
+• Funcionamento correto da aplicação;
+• Utilização adequada da base de dados;
+• Implementação correta do contador sequencial diário;
+• Organização e clareza do código;
+• Utilização correta do GitHub (commits, organização do repositório);
+• Cumprimento dos requisitos propostos;
+• Apresentação e explicação do projeto
