@@ -89,19 +89,6 @@ export default function Home() {
             ))}
           </div>
         </section>
-
-        {/* Results Section */}
-        <section className="space-y-8">
-          <div className="flex flex-col gap-8">
-            {isLoading ? (
-              <div className="w-full h-48 bg-muted/20 animate-pulse rounded-2xl" />
-            ) : (
-              <LastClickCard lastClick={lastClick} />
-            )}
-            
-            <HistoryList clicks={clicks} />
-          </div>
-        </section>
         
         {/* Footer */}
         <footer className="text-center text-sm text-muted-foreground pt-12">
