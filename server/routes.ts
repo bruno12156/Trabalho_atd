@@ -4,24 +4,11 @@ import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
 
-async function seedDatabase() {
-  const todayClicks = await storage.getTodayClicks();
-  if (todayClicks.length === 0) {
-    console.log("Seeding database with initial clicks...");
-    await storage.createClick({ buttonLabel: "Button 1" });
-    await storage.createClick({ buttonLabel: "Button 2" });
-    console.log("Seeding complete.");
-  }
-}
-
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
   
-  // Seed data on startup
-  seedDatabase().catch(console.error);
-
   app.get(api.clicks.listToday.path, async (req, res) => {
     const todayClicks = await storage.getTodayClicks();
     res.json(todayClicks);
