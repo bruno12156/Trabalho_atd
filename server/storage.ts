@@ -12,6 +12,9 @@ export class DatabaseStorage implements IStorage {
     const startOfDay = new Date();
     startOfDay.setHours(0, 0, 0, 0);
     
+    // Debug: log the UTC range we are looking for
+    console.log(`Searching for clicks since: ${startOfDay.toISOString()}`);
+
     return await db.select()
       .from(clicks)
       .where(gte(clicks.createdAt, startOfDay))
@@ -19,8 +22,12 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createClick(insertClick: InsertClick): Promise<Click> {
-    const startOfDay = new Date();
+    const now = new Date();
+    const startOfDay = new Date(now);
     startOfDay.setHours(0, 0, 0, 0);
+
+    // Debug: log the UTC range for counting
+    console.log(`Counting clicks for ${insertClick.buttonLabel} since: ${startOfDay.toISOString()}`);
 
     // Count clicks for this specific button today
     const [result] = await db
@@ -40,6 +47,7 @@ export class DatabaseStorage implements IStorage {
       .values({
         ...insertClick,
         dailySequence: nextSequence,
+        createdAt: now,
       })
       .returning();
 
