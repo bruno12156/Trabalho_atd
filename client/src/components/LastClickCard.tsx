@@ -29,49 +29,32 @@ export function LastClickCard({ lastClick }: LastClickCardProps) {
     <AnimatePresence mode="wait">
       <motion.div
         key={lastClick.id}
-        initial={{ opacity: 0, y: 20, scale: 0.95 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, scale: 0.95 }}
-        transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0 }}
       >
-        <Card className="overflow-hidden border-none shadow-2xl bg-gradient-to-br from-card to-secondary/5 relative">
-          <div className="absolute top-0 right-0 p-32 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-          
-          <div className="p-8 relative z-10">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-              
-              <div className="text-center md:text-left">
-                <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest mb-1">Latest Action</p>
-                <h2 className="text-4xl md:text-5xl font-bold font-display text-gradient mb-2">
-                  {lastClick.buttonLabel}
-                </h2>
+        <Card className="p-6 border bg-card">
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center justify-between border-b pb-2">
+              <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Button Clicked</span>
+              <span className="text-lg font-bold">{lastClick.buttonLabel}</span>
+            </div>
+            
+            <div className="grid grid-cols-3 gap-4">
+              <div className="flex flex-col">
+                <span className="text-[10px] text-muted-foreground uppercase font-bold">Ticket</span>
+                <span className="text-xl font-bold">#{lastClick.dailySequence}</span>
               </div>
-
-              <div className="grid grid-cols-3 gap-4 md:gap-8 w-full md:w-auto">
-                <div className="flex flex-col items-center p-4 bg-background/50 rounded-xl border border-border/50 shadow-sm backdrop-blur-sm">
-                  <Hash className="w-5 h-5 text-primary mb-2" />
-                  <span className="text-xs text-muted-foreground uppercase font-bold">Sequence</span>
-                  <span className="text-2xl font-bold font-display">#{lastClick.dailySequence}</span>
-                </div>
-
-                <div className="flex flex-col items-center p-4 bg-background/50 rounded-xl border border-border/50 shadow-sm backdrop-blur-sm">
-                  <Clock className="w-5 h-5 text-accent mb-2" />
-                  <span className="text-xs text-muted-foreground uppercase font-bold">Time</span>
-                  <span className="text-2xl font-bold font-display">{format(date, "HH:mm")}</span>
-                </div>
-
-                <div className="flex flex-col items-center p-4 bg-background/50 rounded-xl border border-border/50 shadow-sm backdrop-blur-sm">
-                  <Calendar className="w-5 h-5 text-secondary mb-2" />
-                  <span className="text-xs text-muted-foreground uppercase font-bold">Date</span>
-                  <span className="text-2xl font-bold font-display">{format(date, "dd MMM")}</span>
-                </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] text-muted-foreground uppercase font-bold">Time</span>
+                <span className="text-xl font-bold">{format(date, "HH:mm")}</span>
               </div>
-
+              <div className="flex flex-col">
+                <span className="text-[10px] text-muted-foreground uppercase font-bold">Date</span>
+                <span className="text-xl font-bold">{format(date, "dd/MM")}</span>
+              </div>
             </div>
           </div>
-          
-          {/* Decorative bar at bottom */}
-          <div className="h-1.5 w-full bg-gradient-to-r from-primary via-accent to-secondary" />
         </Card>
       </motion.div>
     </AnimatePresence>

@@ -34,10 +34,10 @@ export default function Home() {
 
   // Button configurations with distinct styles
   const buttons = [
-    { label: "Button 1", color: "bg-gradient-to-br from-violet-500 to-purple-600 shadow-purple-500/25 hover:shadow-purple-500/40" },
-    { label: "Button 2", color: "bg-gradient-to-br from-blue-500 to-cyan-600 shadow-blue-500/25 hover:shadow-blue-500/40" },
-    { label: "Button 3", color: "bg-gradient-to-br from-pink-500 to-rose-600 shadow-pink-500/25 hover:shadow-pink-500/40" },
-    { label: "Button 4", color: "bg-gradient-to-br from-amber-500 to-orange-600 shadow-orange-500/25 hover:shadow-orange-500/40" },
+    { label: "Button 1", color: "bg-slate-700 hover:bg-slate-800 text-white shadow-sm" },
+    { label: "Button 2", color: "bg-slate-700 hover:bg-slate-800 text-white shadow-sm" },
+    { label: "Button 3", color: "bg-slate-700 hover:bg-slate-800 text-white shadow-sm" },
+    { label: "Button 4", color: "bg-slate-700 hover:bg-slate-800 text-white shadow-sm" },
   ];
 
   return (
