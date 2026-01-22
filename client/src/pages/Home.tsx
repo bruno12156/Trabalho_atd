@@ -53,14 +53,6 @@ export default function Home() {
           >
             Click Registry<span className="text-primary">.</span>
           </motion.h1>
-          <motion.p 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.1 }}
-            className="text-lg text-muted-foreground"
-          >
-            Track daily interactions with precision timing.
-          </motion.p>
         </header>
 
         {/* Action Grid */}

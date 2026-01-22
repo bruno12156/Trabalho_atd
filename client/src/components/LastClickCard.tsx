@@ -45,10 +45,6 @@ export function LastClickCard({ lastClick }: LastClickCardProps) {
                 <h2 className="text-4xl md:text-5xl font-bold font-display text-gradient mb-2">
                   {lastClick.buttonLabel}
                 </h2>
-                <div className="flex items-center gap-2 justify-center md:justify-start text-sm text-muted-foreground bg-secondary/10 px-3 py-1 rounded-full w-fit mx-auto md:mx-0">
-                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                  Successfully Recorded
-                </div>
               </div>
 
               <div className="grid grid-cols-3 gap-4 md:gap-8 w-full md:w-auto">
