@@ -1,6 +1,6 @@
 import { db } from "./db";
 import { clicks, type InsertClick, type Click } from "@shared/schema";
-import { sql, desc, gte } from "drizzle-orm";
+import { sql, desc, gte, eq, and } from "drizzle-orm";
 
 export interface IStorage {
   getTodayClicks(): Promise<Click[]>;
@@ -19,17 +19,19 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createClick(insertClick: InsertClick): Promise<Click> {
-    // We need to calculate the daily sequence.
-    // In a real high-concurrency app we'd need locking, but for this simple app,
-    // counting existing records for today + 1 is sufficient.
     const startOfDay = new Date();
     startOfDay.setHours(0, 0, 0, 0);
 
-    // Get count of clicks today
+    // Count clicks for this specific button today
     const [result] = await db
         .select({ count: sql<number>`count(*)` })
         .from(clicks)
-        .where(gte(clicks.createdAt, startOfDay));
+        .where(
+          and(
+            gte(clicks.createdAt, startOfDay),
+            eq(clicks.buttonLabel, insertClick.buttonLabel)
+          )
+        );
 
     const nextSequence = Number(result.count) + 1;
 
