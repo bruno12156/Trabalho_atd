@@ -45,6 +45,8 @@ export default function Home() {
     { label: "Button 4", color: "bg-gradient-to-br from-amber-500 to-orange-600 shadow-orange-500/25 hover:shadow-orange-500/40" },
   ];
 
+  const lastClick = clicks.length > 0 ? clicks[0] : undefined;
+
   return (
     <div className="min-h-screen bg-background bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-background to-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-12 space-y-12">
@@ -88,6 +90,19 @@ export default function Home() {
               </motion.div>
             ))}
           </div>
+        </section>
+
+        {/* Results Section */}
+        <section className="flex justify-center">
+          {lastClick && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="w-full max-w-md"
+            >
+              <LastClickCard lastClick={lastClick} />
+            </motion.div>
+          )}
         </section>
         
         {/* Footer */}
