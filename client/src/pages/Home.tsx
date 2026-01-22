@@ -17,12 +17,7 @@ export default function Home() {
   const handleButtonClick = async (label: string) => {
     try {
       setActiveButton(label);
-      const result = await createClick({ buttonLabel: label });
-      toast({
-        title: `Ticket #${result.dailySequence}`,
-        description: `Button: ${result.buttonLabel}`,
-        className: "bg-blue-600 text-white border-none font-medium",
-      });
+      await createClick({ buttonLabel: label });
     } catch (error) {
       toast({
         title: "Error",
