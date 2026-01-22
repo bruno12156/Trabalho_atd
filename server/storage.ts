@@ -1,38 +1,48 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import { clicks, type InsertClick, type Click } from "@shared/schema";
+import { sql, desc, gte } from "drizzle-orm";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  getTodayClicks(): Promise<Click[]>;
+  createClick(click: InsertClick): Promise<Click>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-
-  constructor() {
-    this.users = new Map();
+export class DatabaseStorage implements IStorage {
+  async getTodayClicks(): Promise<Click[]> {
+    const startOfDay = new Date();
+    startOfDay.setHours(0, 0, 0, 0);
+    
+    return await db.select()
+      .from(clicks)
+      .where(gte(clicks.createdAt, startOfDay))
+      .orderBy(desc(clicks.createdAt));
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
-  }
+  async createClick(insertClick: InsertClick): Promise<Click> {
+    // We need to calculate the daily sequence.
+    // In a real high-concurrency app we'd need locking, but for this simple app,
+    // counting existing records for today + 1 is sufficient.
+    const startOfDay = new Date();
+    startOfDay.setHours(0, 0, 0, 0);
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
-  }
+    // Get count of clicks today
+    const [result] = await db
+        .select({ count: sql<number>`count(*)` })
+        .from(clicks)
+        .where(gte(clicks.createdAt, startOfDay));
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+    const nextSequence = Number(result.count) + 1;
+
+    const [newClick] = await db
+      .insert(clicks)
+      .values({
+        ...insertClick,
+        dailySequence: nextSequence,
+      })
+      .returning();
+
+    return newClick;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();

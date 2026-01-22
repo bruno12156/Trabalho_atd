@@ -1,18 +1,27 @@
-import { sql } from "drizzle-orm";
-import { pgTable, text, varchar } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, integer, timestamp } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
-export const users = pgTable("users", {
-  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
-  username: text("username").notNull().unique(),
-  password: text("password").notNull(),
+// === TABLE DEFINITIONS ===
+export const clicks = pgTable("clicks", {
+  id: serial("id").primaryKey(),
+  buttonLabel: text("button_label").notNull(), // e.g., "Button 1"
+  dailySequence: integer("daily_sequence").notNull(), // 1, 2, 3... for the current day
+  createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
-export const insertUserSchema = createInsertSchema(users).pick({
-  username: true,
-  password: true,
+// === BASE SCHEMAS ===
+export const insertClickSchema = createInsertSchema(clicks).pick({
+  buttonLabel: true,
 });
 
-export type InsertUser = z.infer<typeof insertUserSchema>;
-export type User = typeof users.$inferSelect;
+// === EXPLICIT API CONTRACT TYPES ===
+export type Click = typeof clicks.$inferSelect;
+export type InsertClick = z.infer<typeof insertClickSchema>;
+
+// Request types
+export type CreateClickRequest = InsertClick;
+
+// Response types
+export type ClickResponse = Click;
+export type ClicksListResponse = Click[];
