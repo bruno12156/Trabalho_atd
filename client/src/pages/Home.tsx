@@ -20,8 +20,8 @@ export default function Home() {
       const result = await createClick({ buttonLabel: label });
       toast({
         title: `Ticket #${result.dailySequence}`,
-        description: `Button: ${result.buttonLabel} | Date: ${new Date(result.createdAt).toLocaleDateString()} | Time: ${new Date(result.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`,
-        className: "bg-primary text-primary-foreground border-none font-medium",
+        description: `Button: ${result.buttonLabel}`,
+        className: "bg-blue-600 text-white border-none font-medium",
       });
     } catch (error) {
       toast({
