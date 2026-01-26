@@ -51,7 +51,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-display font-bold text-foreground tracking-tight"
           >
-            Registro de Cliques<span className="text-primary">.</span>
+            Registro de Cliques<span className="text-foreground">.</span>
           </motion.h1>
         </header>
 
