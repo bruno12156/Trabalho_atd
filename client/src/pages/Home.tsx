@@ -34,14 +34,14 @@ export default function Home() {
 
   // Button configurations with distinct styles
   const buttons = [
-    { label: "Button 1", color: "bg-slate-700 hover:bg-slate-800 text-white shadow-sm" },
-    { label: "Button 2", color: "bg-slate-700 hover:bg-slate-800 text-white shadow-sm" },
-    { label: "Button 3", color: "bg-slate-700 hover:bg-slate-800 text-white shadow-sm" },
-    { label: "Button 4", color: "bg-slate-700 hover:bg-slate-800 text-white shadow-sm" },
+    { label: "Botão 1", color: "bg-blue-600 hover:bg-blue-700 text-white shadow-sm" },
+    { label: "Botão 2", color: "bg-blue-600 hover:bg-blue-700 text-white shadow-sm" },
+    { label: "Botão 3", color: "bg-blue-600 hover:bg-blue-700 text-white shadow-sm" },
+    { label: "Botão 4", color: "bg-blue-600 hover:bg-blue-700 text-white shadow-sm" },
   ];
 
   return (
-    <div className="min-h-screen bg-background bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/5 via-background to-background">
+    <div className="min-h-screen bg-background">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 md:py-12 space-y-12">
         
         {/* Header */}
@@ -51,7 +51,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             className="text-4xl md:text-6xl font-display font-bold text-foreground tracking-tight"
           >
-            Click Registry<span className="text-primary">.</span>
+            Registro de Cliques<span className="text-primary">.</span>
           </motion.h1>
         </header>
 

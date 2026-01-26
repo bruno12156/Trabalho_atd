@@ -16,8 +16,8 @@ export function LastClickCard({ lastClick }: LastClickCardProps) {
           <div className="w-12 h-12 rounded-full bg-muted flex items-center justify-center">
             <MousePointerClick className="w-6 h-6" />
           </div>
-          <h3 className="text-lg font-semibold font-display">No clicks today</h3>
-          <p>Start clicking the buttons above!</p>
+          <h3 className="text-lg font-semibold font-display">Sem cliques hoje</h3>
+          <p>Comece a clicar nos botões acima!</p>
         </div>
       </Card>
     );
@@ -36,7 +36,7 @@ export function LastClickCard({ lastClick }: LastClickCardProps) {
         <Card className="p-6 border bg-card">
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between border-b pb-2">
-              <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Button Clicked</span>
+              <span className="text-sm font-medium text-muted-foreground uppercase tracking-wider">Botão Clicado</span>
               <span className="text-lg font-bold">{lastClick.buttonLabel}</span>
             </div>
             
@@ -46,11 +46,11 @@ export function LastClickCard({ lastClick }: LastClickCardProps) {
                 <span className="text-xl font-bold">#{lastClick.dailySequence}</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-[10px] text-muted-foreground uppercase font-bold">Time</span>
+                <span className="text-[10px] text-muted-foreground uppercase font-bold">Hora</span>
                 <span className="text-xl font-bold">{format(date, "HH:mm")}</span>
               </div>
               <div className="flex flex-col">
-                <span className="text-[10px] text-muted-foreground uppercase font-bold">Date</span>
+                <span className="text-[10px] text-muted-foreground uppercase font-bold">Data</span>
                 <span className="text-xl font-bold">{format(date, "dd/MM")}</span>
               </div>
             </div>
